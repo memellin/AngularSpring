@@ -1,0 +1,27 @@
+ [
+    {
+      "_id": "1",
+      "name": "LeBron James",
+      "ppg": 25.0
+    },
+    {
+      "_id": "2",
+      "name": "Kevin Durant",
+      "ppg": 27.0
+    },
+    {
+      "_id": "3",
+      "name": "Stephen Curry",
+      "ppg": 30.5
+    },
+    {
+      "_id": "4",
+      "name": "Kawhi Leonard",
+      "ppg": 24.8
+    },
+    {
+      "_id": "5",
+      "name": "Giannis Antetokounmpo",
+      "ppg": 29.6
+    }
+  ]
