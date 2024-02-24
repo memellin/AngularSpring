@@ -5,9 +5,10 @@ import { AppMaterialImportsModule } from '../shared/app-material-imports/app-mat
 import { ExampleRoutingModule } from './example-routing.module';
 import { ExampleComponent } from './example/example.component';
 import { SharedModule } from '../shared/shared.module';
+import { ExampleFormComponent } from './example-form/example-form.component';
 
 @NgModule({
-  declarations: [ExampleComponent],
+  declarations: [ExampleComponent, ExampleFormComponent],
   imports: [
     CommonModule,
     ExampleRoutingModule,
