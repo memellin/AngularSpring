@@ -6,6 +6,7 @@ import { ExampleRoutingModule } from './example-routing.module';
 import { ExampleComponent } from './example/example.component';
 import { SharedModule } from '../shared/shared.module';
 import { ExampleFormComponent } from './example-form/example-form.component';
+import { ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [ExampleComponent, ExampleFormComponent],
@@ -14,6 +15,7 @@ import { ExampleFormComponent } from './example-form/example-form.component';
     ExampleRoutingModule,
     AppMaterialImportsModule,
     SharedModule,
+    ReactiveFormsModule,
   ],
 })
 export class ExampleModule {}
