@@ -23,7 +23,7 @@ export class ExamplesService {
     );
   }
 
-  save(record: Example){
+  save(record: Partial<Example>){
     return this.httpClient.post<Example>(this.API, record).pipe(first());
   }
 

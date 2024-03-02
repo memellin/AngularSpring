@@ -1,6 +1,6 @@
 import { Location } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
-import { UntypedFormBuilder, UntypedFormGroup } from '@angular/forms';
+import { FormBuilder, NonNullableFormBuilder } from '@angular/forms';
 import { MatSnackBar } from '@angular/material/snack-bar';
 
 import { ExamplesService } from '../services/examples.service';
@@ -11,18 +11,18 @@ import { ExamplesService } from '../services/examples.service';
   styleUrls: ['./example-form.component.scss'],
 })
 export class ExampleFormComponent implements OnInit {
-  form: UntypedFormGroup;
+  form = this.formBuilder.group({
+    name: [''],
+    ppg: [''],
+  });
 
   constructor(
-    private formBuilder: UntypedFormBuilder,
+    private formBuilder: NonNullableFormBuilder,
     private service: ExamplesService,
     private snackBar: MatSnackBar,
     private location: Location
   ) {
-    this.form = this.formBuilder.group({
-      name: [null],
-      ppg: [null],
-    });
+    // this.form
   }
 
   ngOnInit(): void {}
