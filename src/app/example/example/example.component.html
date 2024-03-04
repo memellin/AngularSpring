@@ -1,54 +1,16 @@
 <mat-card>
   <mat-toolbar color="primary"> NBA Players </mat-toolbar>
-  <div *ngIf="examples$ | async as examples; else loading">
-    <table mat-table [dataSource]="examples" class="mat-elevation-z8">
-      <!-- Name Column -->
-      <ng-container matColumnDef="name">
-        <th mat-header-cell *matHeaderCellDef>Name</th>
-        <td mat-cell *matCellDef="let example">
-          {{ example.name }}
-          <mat-icon aria-hidden="false" aria-label="Icon"
-            >{{ example.name | name }}
-          </mat-icon>
-        </td>
-      </ng-container>
 
-      <!-- PPG Column -->
-      <ng-container matColumnDef="ppg">
-        <th mat-header-cell *matHeaderCellDef>PPG</th>
-        <td mat-cell *matCellDef="let example">
-          {{ example.ppg }}
-        </td>
-      </ng-container>
+  <div class="column-flex mat-elevation-z8">
+    <app-example-list
+      *ngIf="examples$ | async as examples; else loading"
+      [examples]="examples"
+    ></app-example-list>
 
-      <!-- Actions -->
-      <ng-container matColumnDef="actions">
-        <mat-header-cell *matHeaderCellDef>
-          <button mat-mini-fab color="primary" aria-label="Add a example">
-            <mat-icon (click)="onAdd()">add</mat-icon>
-          </button>
-        </mat-header-cell>
-
-        <mat-cell *matCellDef="let example">
-          <button mat-icon-button color="primary" aria-label="Editar example">
-            <mat-icon>edit</mat-icon>
-          </button>
-
-          <button mat-icon-button="warn" aria-label="Remove example">
-            <mat-icon>delete</mat-icon>
-          </button>
-        </mat-cell>
-      </ng-container>
-
-    <!-- logica front-end apra aparecer as colunas -->
-      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-      <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
-    </table>
+    <ng-template #loading>
+      <div class="loading-spinner">
+        <mat-spinner></mat-spinner>
+      </div>
+    </ng-template>
   </div>
-
-  <ng-template #loading>
-    <div class="loading-spinner">
-      <mat-spinner></mat-spinner>
-    </div>
-  </ng-template>
 </mat-card>

@@ -14,9 +14,9 @@ import { ActivatedRoute, Router } from '@angular/router';
   styleUrls: ['./example.component.scss'],
 })
 export class ExampleComponent implements OnInit {
+
   examples$: Observable<Example[]>;
 
-  displayedColumns = ['name', 'ppg', 'actions'];
 
   // examplesService: ExamplesService;
 

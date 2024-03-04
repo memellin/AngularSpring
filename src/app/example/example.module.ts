@@ -7,9 +7,10 @@ import { ExampleComponent } from './example/example.component';
 import { SharedModule } from '../shared/shared.module';
 import { ExampleFormComponent } from './example-form/example-form.component';
 import { ReactiveFormsModule } from '@angular/forms';
+import { ExampleListComponent } from './example-list/example-list.component';
 
 @NgModule({
-  declarations: [ExampleComponent, ExampleFormComponent],
+  declarations: [ExampleComponent, ExampleFormComponent, ExampleListComponent],
   imports: [
     CommonModule,
     ExampleRoutingModule,
