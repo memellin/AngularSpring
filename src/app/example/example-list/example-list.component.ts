@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { Example } from '../model/example';
 import { ActivatedRoute, Router } from '@angular/router';
 
@@ -10,20 +10,18 @@ import { ActivatedRoute, Router } from '@angular/router';
 export class ExampleListComponent implements OnInit {
 
   @Input() examples: Example[] = [];
+  @Output() add = new EventEmitter(false);
 
   readonly displayedColumns = ['name', 'ppg', 'actions'];
 
-
   constructor(
-    private router: Router,
-    private route: ActivatedRoute
 
   ) { }
 
   ngOnInit(): void {
   }
   onAdd(){
-    console.log('Adicionar jogador');
-    this.router.navigate(['new'], {relativeTo: this.route}); // navega para a rota example/new quando clickado
-  }
+    this.add.emit(true);
+    }
+
 }

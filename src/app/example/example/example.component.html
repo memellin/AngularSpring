@@ -5,6 +5,7 @@
     <app-example-list
       *ngIf="examples$ | async as examples; else loading"
       [examples]="examples"
+      (add)="onAdd()"
     ></app-example-list>
 
     <ng-template #loading>
