@@ -3,7 +3,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, NonNullableFormBuilder } from '@angular/forms';
 import { MatSnackBar } from '@angular/material/snack-bar';
 
-import { ExamplesService } from '../services/examples.service';
+import { ExamplesService } from '../../services/examples.service';
 
 @Component({
   selector: 'app-example-form',

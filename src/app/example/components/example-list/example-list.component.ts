@@ -1,6 +1,5 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
-import { Example } from '../model/example';
-import { ActivatedRoute, Router } from '@angular/router';
+import { Example } from '../../model/example';
 
 @Component({
   selector: 'app-example-list',
