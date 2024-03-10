@@ -10,17 +10,21 @@ export class ExampleListComponent implements OnInit {
 
   @Input() examples: Example[] = [];
   @Output() add = new EventEmitter(false);
+  @Output() edit = new EventEmitter(false);
 
   readonly displayedColumns = ['name', 'ppg', 'actions'];
 
-  constructor(
-
-  ) { }
+  constructor() { }
 
   ngOnInit(): void {
   }
+
   onAdd(){
     this.add.emit(true);
     }
+
+  onEdit(example: Example){
+    this.edit.emit(example);
+  }
 
 }

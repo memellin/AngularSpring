@@ -1,9 +1,11 @@
+import { Example } from './../../model/example';
 import { Location } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, NonNullableFormBuilder } from '@angular/forms';
 import { MatSnackBar } from '@angular/material/snack-bar';
 
 import { ExamplesService } from '../../services/examples.service';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-example-form',
@@ -12,6 +14,7 @@ import { ExamplesService } from '../../services/examples.service';
 })
 export class ExampleFormComponent implements OnInit {
   form = this.formBuilder.group({
+    _id: [''],
     name: [''],
     ppg: [''],
   });
@@ -20,12 +23,20 @@ export class ExampleFormComponent implements OnInit {
     private formBuilder: NonNullableFormBuilder,
     private service: ExamplesService,
     private snackBar: MatSnackBar,
-    private location: Location
+    private location: Location,
+    private route: ActivatedRoute
   ) {
     // this.form
   }
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    const example: Example = this.route.snapshot.data['example'];
+    this.form.setValue({
+      _id: example._id,
+      name: example.name,
+      ppg: example.ppg,
+    });
+  }
 
   onSubmit() {
     this.service.save(this.form.value).subscribe({

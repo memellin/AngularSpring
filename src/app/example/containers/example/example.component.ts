@@ -48,4 +48,9 @@ export class ExampleComponent implements OnInit {
     console.log('Adicionar jogador');
     this.router.navigate(['new'], {relativeTo: this.route}); // navega para a rota example/new quando clickado
   }
+
+  onEdit(example: Example){
+    console.log('Editar jogador', example);
+    this.router.navigate(['edit', example._id], {relativeTo: this.route});
+  }
 }

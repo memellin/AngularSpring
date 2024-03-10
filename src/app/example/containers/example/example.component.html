@@ -6,6 +6,7 @@
       *ngIf="examples$ | async as examples; else loading"
       [examples]="examples"
       (add)="onAdd()"
+      (edit)="onEdit($event)"
     ></app-example-list>
 
     <ng-template #loading>

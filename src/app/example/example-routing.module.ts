@@ -3,6 +3,7 @@ import { RouterModule, Routes } from '@angular/router';
 
 import { ExampleComponent } from './containers/example/example.component';
 import { ExampleFormComponent } from './containers/example-form/example-form.component';
+import { ExampleResolver } from './guards/example.resolver';
 
 const routes: Routes = [
   {
@@ -12,6 +13,12 @@ const routes: Routes = [
   {
     path: 'new',
     component: ExampleFormComponent,
+    resolve: { example: ExampleResolver}
+  },
+  {
+    path: 'edit/:id',
+    component: ExampleFormComponent,
+    resolve: { example: ExampleResolver}
   },
 ];
 
