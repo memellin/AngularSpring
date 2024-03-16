@@ -34,7 +34,7 @@
       </button>
 
       <button mat-icon-button="warn" aria-label="Remove example">
-        <mat-icon>delete</mat-icon>
+        <mat-icon (click)="onDelete(example)">delete</mat-icon>
       </button>
     </mat-cell>
   </ng-container>

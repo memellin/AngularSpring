@@ -7,6 +7,7 @@ import { ExamplesService } from '../../services/examples.service';
 import { MatDialog } from '@angular/material/dialog';
 import { ErrorDialogComponent } from 'src/app/shared/components/error-dialog/error-dialog.component';
 import { ActivatedRoute, Router } from '@angular/router';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-example',
@@ -14,9 +15,7 @@ import { ActivatedRoute, Router } from '@angular/router';
   styleUrls: ['./example.component.scss'],
 })
 export class ExampleComponent implements OnInit {
-
-  examples$: Observable<Example[]>;
-
+  examples$: Observable<Example[]> | null = null;
 
   // examplesService: ExamplesService;
 
@@ -24,13 +23,18 @@ export class ExampleComponent implements OnInit {
     public dialog: MatDialog,
     private examplesService: ExamplesService,
     private router: Router,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+    private snackBar: MatSnackBar
   ) {
     // this.examples = []; inicia no construtour
     // this.examplesService = new ExamplesService();
+    this.refresh();
+  }
+
+  refresh() {
     this.examples$ = this.examplesService.list().pipe(
       catchError((error) => {
-        this.onError("erro ao carregar jogadores")
+        this.onError('erro ao carregar jogadores');
         return of([]);
       })
     );
@@ -38,19 +42,35 @@ export class ExampleComponent implements OnInit {
 
   onError(errorMsg: string) {
     this.dialog.open(ErrorDialogComponent, {
-      data: errorMsg
+      data: errorMsg,
     });
   }
 
   ngOnInit(): void {}
 
-  onAdd(){
+  onAdd() {
     console.log('Adicionar jogador');
-    this.router.navigate(['new'], {relativeTo: this.route}); // navega para a rota example/new quando clickado
+    this.router.navigate(['new'], { relativeTo: this.route }); // navega para a rota example/new quando clickado
   }
 
-  onEdit(example: Example){
+  onEdit(example: Example) {
     console.log('Editar jogador', example);
-    this.router.navigate(['edit', example._id], {relativeTo: this.route});
+    this.router.navigate(['edit', example._id], { relativeTo: this.route });
+  }
+
+  onDelete(example: Example) {
+    this.examplesService.delete(example._id).subscribe(
+      () => {
+        this.refresh();
+        this.snackBar.open('Jogador removido com sucesso', 'X', {
+          duration: 1000,
+          verticalPosition: 'top',
+          horizontalPosition: 'center',
+        });
+      },
+      (error) => {
+        this.onError('Erro ao remover jogador');
+      }
+    );
   }
 }

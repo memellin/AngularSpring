@@ -41,4 +41,9 @@ export class ExamplesService {
       .put<Example>(`${this.API}/${record._id}`, record)
       .pipe(first());
   }
+
+  delete(id: string){
+    return this.httpClient.delete<Example>(`${this.API}/${id}`)
+     .pipe(first());
+  }
 }
