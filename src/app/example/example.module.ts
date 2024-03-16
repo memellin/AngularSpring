@@ -8,10 +8,9 @@ import { SharedModule } from '../shared/shared.module';
 import { ExampleFormComponent } from './containers/example-form/example-form.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { ExampleListComponent } from './components/example-list/example-list.component';
-import { ConfirmationDialogComponent } from '../shared/components/confirmation-dialog/confirmation-dialog.component';
 
 @NgModule({
-  declarations: [ExampleComponent, ExampleFormComponent, ExampleListComponent, ConfirmationDialogComponent],
+  declarations: [ExampleComponent, ExampleFormComponent, ExampleListComponent],
   imports: [
     CommonModule,
     ExampleRoutingModule,

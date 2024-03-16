@@ -8,6 +8,7 @@ import { MatDialog } from '@angular/material/dialog';
 import { ErrorDialogComponent } from 'src/app/shared/components/error-dialog/error-dialog.component';
 import { ActivatedRoute, Router } from '@angular/router';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { ConfirmationDialogComponent } from 'src/app/shared/components/confirmation-dialog/confirmation-dialog.component';
 
 @Component({
   selector: 'app-example',
@@ -59,18 +60,24 @@ export class ExampleComponent implements OnInit {
   }
 
   onDelete(example: Example) {
-    this.examplesService.delete(example._id).subscribe(
-      () => {
-        this.refresh();
-        this.snackBar.open('Jogador removido com sucesso', 'X', {
-          duration: 1000,
-          verticalPosition: 'top',
-          horizontalPosition: 'center',
-        });
-      },
-      (error) => {
-        this.onError('Erro ao remover jogador');
+    const dialogRef = this.dialog.open(ConfirmationDialogComponent, {
+      data: 'Tem certeza que deseja remover esse example?',
+    });
+
+    dialogRef.afterClosed().subscribe((result: boolean) => {
+      if (result) {
+        this.examplesService.delete(example._id).subscribe(
+          () => {
+            this.refresh();
+            this.snackBar.open('Curso removido com sucesso!', 'X', {
+              duration: 5000,
+              verticalPosition: 'top',
+              horizontalPosition: 'center',
+            });
+          },
+          () => this.onError('Erro ao tentar remover curso.')
+        );
       }
-    );
+    });
   }
 }

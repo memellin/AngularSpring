@@ -1,1 +1,11 @@
-<p>confirmation-dialog works!</p>
+<div mat-dialog-content>
+  <p>{{ data }}</p>
+</div>
+<div mat-dialog-actions align="center">
+  <button mat-button (click)="onConfirm(true)"  color="primary">
+    Ok
+  </button>
+  <button mat-button (click)="onConfirm(false)" color="warn">
+    Cancel
+  </button>
+</div>
