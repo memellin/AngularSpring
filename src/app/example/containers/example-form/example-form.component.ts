@@ -1,7 +1,7 @@
 import { Example } from './../../model/example';
 import { Location } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, NonNullableFormBuilder } from '@angular/forms';
+import { FormBuilder, NonNullableFormBuilder, Validators } from '@angular/forms';
 import { MatSnackBar } from '@angular/material/snack-bar';
 
 import { ExamplesService } from '../../services/examples.service';
@@ -15,8 +15,8 @@ import { ActivatedRoute } from '@angular/router';
 export class ExampleFormComponent implements OnInit {
   form = this.formBuilder.group({
     _id: [''],
-    name: [''],
-    ppg: [''],
+    name: ['', [Validators.required, Validators.minLength(2), Validators.maxLength(100)]],
+    ppg: ['', [Validators.required]],
   });
 
   constructor(
@@ -58,5 +58,18 @@ export class ExampleFormComponent implements OnInit {
 
   private onError() {
     this.snackBar.open('Error saving record', 'Close', { duration: 2000 });
+  }
+  getErrorMessage(fieldName: string) {
+    const field = this.form.get(fieldName);
+    if(field != null && field.hasError('required')){
+      return 'Campo obrigatório';
+    }
+    if(field != null && field.hasError('minlength')){
+      return 'Campo deve ter no mínimo 2 caracteres';
+    }
+    if(field != null && field.hasError('maxlength')){
+      return 'Campo deve ter no máximo 100 caracteres';
+    }
+    return 'Invalid value';
   }
 }
