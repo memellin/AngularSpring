@@ -15,8 +15,10 @@ import { ActivatedRoute } from '@angular/router';
 export class ExampleFormComponent implements OnInit {
   form = this.formBuilder.group({
     _id: [''],
-    name: ['', [Validators.required, Validators.minLength(2), Validators.maxLength(100)]],
+    position: ['', [Validators.required]],
+    name: ['', [Validators.required, Validators.minLength(3), Validators.maxLength(100)]],
     ppg: ['', [Validators.required]],
+
   });
 
   constructor(
@@ -33,6 +35,7 @@ export class ExampleFormComponent implements OnInit {
     const example: Example = this.route.snapshot.data['example'];
     this.form.setValue({
       _id: example._id,
+      position: example.position,
       name: example.name,
       ppg: example.ppg,
     });
@@ -65,7 +68,7 @@ export class ExampleFormComponent implements OnInit {
       return 'Campo obrigatório';
     }
     if(field != null && field.hasError('minlength')){
-      return 'Campo deve ter no mínimo 2 caracteres';
+      return 'Campo deve ter no mínimo 3 caracteres';
     }
     if(field != null && field.hasError('maxlength')){
       return 'Campo deve ter no máximo 100 caracteres';

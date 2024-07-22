@@ -22,6 +22,6 @@ export class ExampleResolver implements Resolve<Example> {
     if (route.params && route.params['id']) {
       return this.service.getById(route.params['id']).pipe();
     }
-    return of({ _id: '', name: '', ppg: '' });
+    return of({ _id: '', position:'', name: '', ppg: ''});
   }
 }
