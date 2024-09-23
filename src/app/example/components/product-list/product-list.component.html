@@ -1,0 +1,11 @@
+<div *ngIf="produtos$ | async as produtos; else loading">
+    <div *ngFor="let produto of produtos">
+      <img [src]="produto.imgUrl" alt="{{ produto.name }}">
+      <h3>{{ produto.name }}</h3>
+      <p>{{ produto.price}}</p>
+    </div>
+  </div>
+
+  <ng-template #loading>
+    <p>Carregando produtos...</p>
+  </ng-template>
